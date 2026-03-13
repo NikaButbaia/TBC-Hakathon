@@ -1,0 +1,8 @@
+target/
+.idea/
+*.iml
+build/
+allure-results/
+visual-regression/backstop_data/bitmaps_test/
+visual-regression/backstop_data/html_report/
+node_modules/
