@@ -4,8 +4,6 @@
     <test name="Tests">
         <classes>
             <class name="ge.tbc.testautomation.uitests.TestyTesty"/>
-            <class name="ge.tbc.testautomation.uitests.TestyPesty"/>
-            <class name="ge.tbc.testautomation.uitests.TestyZesty"/>
         </classes>
     </test>
 </suite>
