@@ -2,7 +2,6 @@ package ge.tbc.testautomation.uitests;
 
 import com.microsoft.playwright.*;
 import ge.tbc.testautomation.steps.*;
-import ge.tbc.testautomation.utils.Utils;
 import org.testng.annotations.*;
 
 import static ge.tbc.testautomation.data.Constants.*;
@@ -14,25 +13,33 @@ public class BaseTest {
     protected BrowserContext context;
     protected Page page;
 
-    protected Utils utils;
     protected MainSteps mainSteps;
     protected ParentalControlsSteps parentalControlsSteps;
+    protected TaskSteps taskSteps;
 
+    @Parameters("browser")
     @BeforeClass
-    public void setUp() {
+    public void setUp(@Optional("chromium") String browserName) {
         playwright = Playwright.create();
 
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
-                .setHeadless(true));
+        BrowserType.LaunchOptions options = new BrowserType.LaunchOptions()
+                .setHeadless(true)
+                .setArgs(java.util.List.of("--start-maximized"));
+
+        browser = switch (browserName.toLowerCase()) {
+            case "firefox" -> playwright.firefox().launch(options);
+            case "webkit" -> playwright.webkit().launch(options);
+            default -> playwright.chromium().launch(options);
+        };
 
         context = browser.newContext(new Browser.NewContextOptions().setViewportSize(null));
 
         page = context.newPage();
         page.navigate(TBC_URL);
 
-        utils = new Utils(page);
         mainSteps = new MainSteps(page);
         parentalControlsSteps = new ParentalControlsSteps(page);
+        taskSteps = new TaskSteps(page);
     }
 
     @AfterClass
