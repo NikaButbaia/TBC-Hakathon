@@ -12,7 +12,7 @@ public class MainPage {
 
     public MainPage(Page page) {
         this.page = page;
-        this.navigateToTasksPage = page.getByText(" Create Task ");
+        this.navigateToTasksPage = page.locator("button.lib-btn.lib-btn--primary:has(i.pi-plus-circle)");
         this.mainPageValidation = page.locator("img.header-logo");
     }
 }

@@ -1,9 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite">
-    <test name="Tests">
+<suite name="Suite" parallel="tests">
+
+    <!-- API Tests -->
+    <test name="API Tests">
         <classes>
-            <class name="ge.tbc.testautomation.uitests.TestyTesty"/>
+            <class name="ge.tbc.testautomation.apitests.tests.QuestApiTests"/>
+            <class name="ge.tbc.testautomation.apitests.tests.QuizApiTests"/>
+            <class name="ge.tbc.testautomation.apitests.tests.QuestQuizFlowTest"/>
         </classes>
     </test>
+
+    <!-- UI Tests -->
+    <test name="Chromium">
+        <parameter name="browser" value="chromium"/>
+        <classes>
+            <class name="ge.tbc.testautomation.uitests.ChangeUserTest"/>
+            <class name="ge.tbc.testautomation.uitests.CreateQuestScenario"/>
+            <class name="ge.tbc.testautomation.uitests.DeleteUserScenario"/>
+            <class name="ge.tbc.testautomation.uitests.EditTaskScenario"/>
+            <class name="ge.tbc.testautomation.uitests.NavigatePageTest"/>
+        </classes>
+    </test>
+
+    <test name="Firefox">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="ge.tbc.testautomation.uitests.ChangeUserTest"/>
+            <class name="ge.tbc.testautomation.uitests.CreateQuestScenario"/>
+            <class name="ge.tbc.testautomation.uitests.DeleteUserScenario"/>
+            <class name="ge.tbc.testautomation.uitests.EditTaskScenario"/>
+            <class name="ge.tbc.testautomation.uitests.NavigatePageTest"/>
+        </classes>
+    </test>
+
+    <test name="Webkit">
+        <parameter name="browser" value="webkit"/>
+        <classes>
+            <class name="ge.tbc.testautomation.uitests.ChangeUserTest"/>
+            <class name="ge.tbc.testautomation.uitests.CreateQuestScenario"/>
+            <class name="ge.tbc.testautomation.uitests.DeleteUserScenario"/>
+            <class name="ge.tbc.testautomation.uitests.EditTaskScenario"/>
+            <class name="ge.tbc.testautomation.uitests.NavigatePageTest"/>
+        </classes>
+    </test>
+
 </suite>
