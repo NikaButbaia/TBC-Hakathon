@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
   schedule:
-    - cron: '*/2 * * * *'
+    - cron: '0 9 * * 1'
 
 jobs:
   test:
@@ -23,7 +23,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Install Playwright browsers
-        run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps chromium"
+        run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps chromium firefox webkit"
 
       - name: Run tests
         run: mvn test -DsuiteXmlFile=testng.xml
